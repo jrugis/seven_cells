@@ -9956,7 +9956,9 @@
       </Property>
       <Property name="SelectionCellFieldDataArrayName" id="5486.SelectionCellFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="5486.SelectionCellFieldDataArrayName.array_list"/>
+        <Domain name="array_list" id="5486.SelectionCellFieldDataArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="SelectionPointFieldDataArrayName" id="5486.SelectionPointFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="vtkOriginalPointIds"/>
@@ -10027,7 +10029,9 @@
         <Element index="2" value=""/>
         <Element index="3" value="1"/>
         <Element index="4" value="dnl"/>
-        <Domain name="array_list" id="5486.ColorArrayName.array_list"/>
+        <Domain name="array_list" id="5486.ColorArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
         <Domain name="field_list" id="5486.ColorArrayName.field_list">
           <Entry value="0" text="Point Data"/>
           <Entry value="1" text="Cell Data"/>
@@ -10072,6 +10076,7 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5486.GlyphTableIndexArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="GlyphType" id="5486.GlyphType" number_of_elements="1">
@@ -10125,7 +10130,9 @@
       </Property>
       <Property name="OSPRayScaleArray" id="5486.OSPRayScaleArray" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="5486.OSPRayScaleArray.array_list"/>
+        <Domain name="array_list" id="5486.OSPRayScaleArray.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="OSPRayScaleFunction" id="5486.OSPRayScaleFunction" number_of_elements="1">
         <Proxy value="5423"/>
@@ -10263,12 +10270,14 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5486.SelectOrientationVectors.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectScaleArray" id="5486.SelectScaleArray" number_of_elements="1">
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5486.SelectScaleArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectionCellLabelBold" id="5486.SelectionCellLabelBold" number_of_elements="1">
@@ -10530,7 +10539,9 @@
       </Property>
       <Property name="SelectionCellFieldDataArrayName" id="5726.SelectionCellFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="5726.SelectionCellFieldDataArrayName.array_list"/>
+        <Domain name="array_list" id="5726.SelectionCellFieldDataArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="SelectionPointFieldDataArrayName" id="5726.SelectionPointFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="vtkOriginalPointIds"/>
@@ -10541,7 +10552,7 @@
         <Domain name="bool" id="5726.SelectionVisibility.bool"/>
       </Property>
       <Property name="Visibility" id="5726.Visibility" number_of_elements="1">
-        <Element index="0" value="0"/>
+        <Element index="0" value="1"/>
         <Domain name="bool" id="5726.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="5726.Ambient" number_of_elements="1">
@@ -10601,7 +10612,9 @@
         <Element index="2" value=""/>
         <Element index="3" value="1"/>
         <Element index="4" value="dnl"/>
-        <Domain name="array_list" id="5726.ColorArrayName.array_list"/>
+        <Domain name="array_list" id="5726.ColorArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
         <Domain name="field_list" id="5726.ColorArrayName.field_list">
           <Entry value="0" text="Point Data"/>
           <Entry value="1" text="Cell Data"/>
@@ -10646,6 +10659,7 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5726.GlyphTableIndexArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="GlyphType" id="5726.GlyphType" number_of_elements="1">
@@ -10699,7 +10713,9 @@
       </Property>
       <Property name="OSPRayScaleArray" id="5726.OSPRayScaleArray" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="5726.OSPRayScaleArray.array_list"/>
+        <Domain name="array_list" id="5726.OSPRayScaleArray.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="OSPRayScaleFunction" id="5726.OSPRayScaleFunction" number_of_elements="1">
         <Proxy value="5663"/>
@@ -10837,12 +10853,14 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5726.SelectOrientationVectors.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectScaleArray" id="5726.SelectScaleArray" number_of_elements="1">
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5726.SelectScaleArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectionCellLabelBold" id="5726.SelectionCellLabelBold" number_of_elements="1">
@@ -11104,7 +11122,9 @@
       </Property>
       <Property name="SelectionCellFieldDataArrayName" id="5966.SelectionCellFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="5966.SelectionCellFieldDataArrayName.array_list"/>
+        <Domain name="array_list" id="5966.SelectionCellFieldDataArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="SelectionPointFieldDataArrayName" id="5966.SelectionPointFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="vtkOriginalPointIds"/>
@@ -11175,7 +11195,9 @@
         <Element index="2" value=""/>
         <Element index="3" value="1"/>
         <Element index="4" value="dnl"/>
-        <Domain name="array_list" id="5966.ColorArrayName.array_list"/>
+        <Domain name="array_list" id="5966.ColorArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
         <Domain name="field_list" id="5966.ColorArrayName.field_list">
           <Entry value="0" text="Point Data"/>
           <Entry value="1" text="Cell Data"/>
@@ -11220,6 +11242,7 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5966.GlyphTableIndexArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="GlyphType" id="5966.GlyphType" number_of_elements="1">
@@ -11273,7 +11296,9 @@
       </Property>
       <Property name="OSPRayScaleArray" id="5966.OSPRayScaleArray" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="5966.OSPRayScaleArray.array_list"/>
+        <Domain name="array_list" id="5966.OSPRayScaleArray.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="OSPRayScaleFunction" id="5966.OSPRayScaleFunction" number_of_elements="1">
         <Proxy value="5903"/>
@@ -11411,12 +11436,14 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5966.SelectOrientationVectors.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectScaleArray" id="5966.SelectScaleArray" number_of_elements="1">
         <Element index="0" value="None"/>
         <Domain name="array_list" id="5966.SelectScaleArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectionCellLabelBold" id="5966.SelectionCellLabelBold" number_of_elements="1">
@@ -11678,7 +11705,9 @@
       </Property>
       <Property name="SelectionCellFieldDataArrayName" id="6206.SelectionCellFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="6206.SelectionCellFieldDataArrayName.array_list"/>
+        <Domain name="array_list" id="6206.SelectionCellFieldDataArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="SelectionPointFieldDataArrayName" id="6206.SelectionPointFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="vtkOriginalPointIds"/>
@@ -11749,7 +11778,9 @@
         <Element index="2" value=""/>
         <Element index="3" value="1"/>
         <Element index="4" value="dnl"/>
-        <Domain name="array_list" id="6206.ColorArrayName.array_list"/>
+        <Domain name="array_list" id="6206.ColorArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
         <Domain name="field_list" id="6206.ColorArrayName.field_list">
           <Entry value="0" text="Point Data"/>
           <Entry value="1" text="Cell Data"/>
@@ -11794,6 +11825,7 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6206.GlyphTableIndexArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="GlyphType" id="6206.GlyphType" number_of_elements="1">
@@ -11847,7 +11879,9 @@
       </Property>
       <Property name="OSPRayScaleArray" id="6206.OSPRayScaleArray" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="6206.OSPRayScaleArray.array_list"/>
+        <Domain name="array_list" id="6206.OSPRayScaleArray.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="OSPRayScaleFunction" id="6206.OSPRayScaleFunction" number_of_elements="1">
         <Proxy value="6143"/>
@@ -11985,12 +12019,14 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6206.SelectOrientationVectors.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectScaleArray" id="6206.SelectScaleArray" number_of_elements="1">
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6206.SelectScaleArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectionCellLabelBold" id="6206.SelectionCellLabelBold" number_of_elements="1">
@@ -12252,7 +12288,9 @@
       </Property>
       <Property name="SelectionCellFieldDataArrayName" id="6446.SelectionCellFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="6446.SelectionCellFieldDataArrayName.array_list"/>
+        <Domain name="array_list" id="6446.SelectionCellFieldDataArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="SelectionPointFieldDataArrayName" id="6446.SelectionPointFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="vtkOriginalPointIds"/>
@@ -12323,7 +12361,9 @@
         <Element index="2" value=""/>
         <Element index="3" value="1"/>
         <Element index="4" value="dnl"/>
-        <Domain name="array_list" id="6446.ColorArrayName.array_list"/>
+        <Domain name="array_list" id="6446.ColorArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
         <Domain name="field_list" id="6446.ColorArrayName.field_list">
           <Entry value="0" text="Point Data"/>
           <Entry value="1" text="Cell Data"/>
@@ -12368,6 +12408,7 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6446.GlyphTableIndexArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="GlyphType" id="6446.GlyphType" number_of_elements="1">
@@ -12421,7 +12462,9 @@
       </Property>
       <Property name="OSPRayScaleArray" id="6446.OSPRayScaleArray" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="6446.OSPRayScaleArray.array_list"/>
+        <Domain name="array_list" id="6446.OSPRayScaleArray.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="OSPRayScaleFunction" id="6446.OSPRayScaleFunction" number_of_elements="1">
         <Proxy value="6383"/>
@@ -12559,12 +12602,14 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6446.SelectOrientationVectors.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectScaleArray" id="6446.SelectScaleArray" number_of_elements="1">
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6446.SelectScaleArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectionCellLabelBold" id="6446.SelectionCellLabelBold" number_of_elements="1">
@@ -12839,7 +12884,7 @@
         <Domain name="bool" id="6686.SelectionVisibility.bool"/>
       </Property>
       <Property name="Visibility" id="6686.Visibility" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="bool" id="6686.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="6686.Ambient" number_of_elements="1">
@@ -13409,7 +13454,9 @@
       </Property>
       <Property name="SelectionCellFieldDataArrayName" id="6926.SelectionCellFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="6926.SelectionCellFieldDataArrayName.array_list"/>
+        <Domain name="array_list" id="6926.SelectionCellFieldDataArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="SelectionPointFieldDataArrayName" id="6926.SelectionPointFieldDataArrayName" number_of_elements="1">
         <Element index="0" value="vtkOriginalPointIds"/>
@@ -13480,7 +13527,9 @@
         <Element index="2" value=""/>
         <Element index="3" value="1"/>
         <Element index="4" value="dnl"/>
-        <Domain name="array_list" id="6926.ColorArrayName.array_list"/>
+        <Domain name="array_list" id="6926.ColorArrayName.array_list">
+          <String text="dnl"/>
+        </Domain>
         <Domain name="field_list" id="6926.ColorArrayName.field_list">
           <Entry value="0" text="Point Data"/>
           <Entry value="1" text="Cell Data"/>
@@ -13525,6 +13574,7 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6926.GlyphTableIndexArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="GlyphType" id="6926.GlyphType" number_of_elements="1">
@@ -13578,7 +13628,9 @@
       </Property>
       <Property name="OSPRayScaleArray" id="6926.OSPRayScaleArray" number_of_elements="1">
         <Element index="0" value="dnl"/>
-        <Domain name="array_list" id="6926.OSPRayScaleArray.array_list"/>
+        <Domain name="array_list" id="6926.OSPRayScaleArray.array_list">
+          <String text="dnl"/>
+        </Domain>
       </Property>
       <Property name="OSPRayScaleFunction" id="6926.OSPRayScaleFunction" number_of_elements="1">
         <Proxy value="6863"/>
@@ -13716,12 +13768,14 @@
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6926.SelectOrientationVectors.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectScaleArray" id="6926.SelectScaleArray" number_of_elements="1">
         <Element index="0" value="None"/>
         <Domain name="array_list" id="6926.SelectScaleArray.array_list">
           <String text="None"/>
+          <String text="dnl"/>
         </Domain>
       </Property>
       <Property name="SelectionCellLabelBold" id="6926.SelectionCellLabelBold" number_of_elements="1">
@@ -13994,7 +14048,7 @@
         <Domain name="bool" id="7166.SelectionVisibility.bool"/>
       </Property>
       <Property name="Visibility" id="7166.Visibility" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="bool" id="7166.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="7166.Ambient" number_of_elements="1">
@@ -14569,7 +14623,7 @@
         <Domain name="bool" id="7406.SelectionVisibility.bool"/>
       </Property>
       <Property name="Visibility" id="7406.Visibility" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="bool" id="7406.Visibility.bool"/>
       </Property>
       <Property name="Ambient" id="7406.Ambient" number_of_elements="1">
@@ -15137,7 +15191,7 @@
         <Domain name="bool" id="5256.AutomaticAnnotations.bool"/>
       </Property>
       <Property name="AutomaticLabelFormat" id="5256.AutomaticLabelFormat" number_of_elements="1">
-        <Element index="0" value="1"/>
+        <Element index="0" value="0"/>
         <Domain name="bool" id="5256.AutomaticLabelFormat.bool"/>
       </Property>
       <Property name="ComponentTitle" id="5256.ComponentTitle" number_of_elements="1">
@@ -15179,11 +15233,11 @@
         </Domain>
       </Property>
       <Property name="LabelFontSize" id="5256.LabelFontSize" number_of_elements="1">
-        <Element index="0" value="12"/>
+        <Element index="0" value="10"/>
         <Domain name="range" id="5256.LabelFontSize.range"/>
       </Property>
       <Property name="LabelFormat" id="5256.LabelFormat" number_of_elements="1">
-        <Element index="0" value="%-#6.3g"/>
+        <Element index="0" value="%.0f"/>
       </Property>
       <Property name="LabelItalic" id="5256.LabelItalic" number_of_elements="1">
         <Element index="0" value="0"/>
@@ -15215,16 +15269,16 @@
         <Element index="0" value="0"/>
       </Property>
       <Property name="Position" id="5256.Position" number_of_elements="2">
-        <Element index="0" value="0.706366987032333"/>
-        <Element index="1" value="0.927207207207207"/>
+        <Element index="0" value="0.744673438645236"/>
+        <Element index="1" value="0.916601146601146"/>
         <Domain name="range" id="5256.Position.range"/>
       </Property>
       <Property name="PositionInfo" id="5256.PositionInfo" number_of_elements="2">
-        <Element index="0" value="0.706366987032333"/>
-        <Element index="1" value="0.927207207207207"/>
+        <Element index="0" value="0.744673438645236"/>
+        <Element index="1" value="0.916601146601146"/>
       </Property>
       <Property name="RangeLabelFormat" id="5256.RangeLabelFormat" number_of_elements="1">
-        <Element index="0" value="%-#6.1e"/>
+        <Element index="0" value="%.0f"/>
       </Property>
       <Property name="Repositionable" id="5256.Repositionable" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -15235,7 +15289,7 @@
         <Domain name="bool" id="5256.Resizable.bool"/>
       </Property>
       <Property name="ScalarBarLength" id="5256.ScalarBarLength" number_of_elements="1">
-        <Element index="0" value="0.243109740544621"/>
+        <Element index="0" value="0.236053288931718"/>
       </Property>
       <Property name="ScalarBarThickness" id="5256.ScalarBarThickness" number_of_elements="1">
         <Element index="0" value="16"/>
@@ -15252,7 +15306,7 @@
         </Domain>
       </Property>
       <Property name="Title" id="5256.Title" number_of_elements="1">
-        <Element index="0" value="dnl"/>
+        <Element index="0" value="DNL (um)"/>
       </Property>
       <Property name="TitleBold" id="5256.TitleBold" number_of_elements="1">
         <Element index="0" value="1"/>
@@ -15694,9 +15748,9 @@
         <Domain name="bool" id="7418.CenterAxesVisibility.bool"/>
       </Property>
       <Property name="CenterOfRotation" id="7418.CenterOfRotation" number_of_elements="3">
-        <Element index="0" value="-1.51733541488647"/>
-        <Element index="1" value="13.9515171051025"/>
-        <Element index="2" value="-6.88717114925385"/>
+        <Element index="0" value="-4.85904586315155"/>
+        <Element index="1" value="21.5973892211914"/>
+        <Element index="2" value="-5.72609788179398"/>
       </Property>
       <Property name="CollectGeometryThreshold" id="7418.CollectGeometryThreshold" number_of_elements="1">
         <Element index="0" value="100"/>
@@ -16018,7 +16072,7 @@
       </Property>
       <Property name="ValueRenderingModeGet" id="7418.ValueRenderingModeGet"/>
       <Property name="ViewSize" id="7418.ViewSize" number_of_elements="2">
-        <Element index="0" value="2150"/>
+        <Element index="0" value="1984"/>
         <Element index="1" value="1320"/>
       </Property>
       <Property name="ViewTime" id="7418.ViewTime" number_of_elements="1">
@@ -16026,14 +16080,14 @@
         <Domain name="range" id="7418.ViewTime.range"/>
       </Property>
       <Property name="CameraFocalPoint" id="7418.CameraFocalPoint" number_of_elements="3">
-        <Element index="0" value="-3.51499186581772"/>
-        <Element index="1" value="15.7754103245036"/>
-        <Element index="2" value="8.68388389253023"/>
+        <Element index="0" value="46.2150414381221"/>
+        <Element index="1" value="23.3790009591864"/>
+        <Element index="2" value="-23.2653903866727"/>
       </Property>
       <Property name="CameraFocalPointInfo" id="7418.CameraFocalPointInfo" number_of_elements="3">
-        <Element index="0" value="-3.51499186581772"/>
-        <Element index="1" value="15.7754103245036"/>
-        <Element index="2" value="8.68388389253023"/>
+        <Element index="0" value="46.2150414381221"/>
+        <Element index="1" value="23.3790009591864"/>
+        <Element index="2" value="-23.2653903866727"/>
       </Property>
       <Property name="CameraParallelScale" id="7418.CameraParallelScale" number_of_elements="1">
         <Element index="0" value="12.3876071216699"/>
@@ -16042,27 +16096,27 @@
         <Element index="0" value="12.3876071216699"/>
       </Property>
       <Property name="CameraPosition" id="7418.CameraPosition" number_of_elements="3">
-        <Element index="0" value="26.9856665884962"/>
-        <Element index="1" value="19.2477368037703"/>
-        <Element index="2" value="-40.3982220880075"/>
+        <Element index="0" value="-51.7092399070198"/>
+        <Element index="1" value="22.1044450698533"/>
+        <Element index="2" value="7.18687675753303"/>
       </Property>
       <Property name="CameraPositionInfo" id="7418.CameraPositionInfo" number_of_elements="3">
-        <Element index="0" value="26.9856665884962"/>
-        <Element index="1" value="19.2477368037703"/>
-        <Element index="2" value="-40.3982220880075"/>
+        <Element index="0" value="-51.7092399070198"/>
+        <Element index="1" value="22.1044450698533"/>
+        <Element index="2" value="7.18687675753303"/>
       </Property>
       <Property name="CameraViewAngle" id="7418.CameraViewAngle" number_of_elements="1">
         <Element index="0" value="30"/>
       </Property>
       <Property name="CameraViewUp" id="7418.CameraViewUp" number_of_elements="3">
-        <Element index="0" value="-0.24415682026509"/>
-        <Element index="1" value="-0.944784399289234"/>
-        <Element index="2" value="-0.218563231074491"/>
+        <Element index="0" value="-0.239216965096976"/>
+        <Element index="1" value="-0.560702398647432"/>
+        <Element index="2" value="-0.79270931857826"/>
       </Property>
       <Property name="CameraViewUpInfo" id="7418.CameraViewUpInfo" number_of_elements="3">
-        <Element index="0" value="-0.24415682026509"/>
-        <Element index="1" value="-0.944784399289234"/>
-        <Element index="2" value="-0.218563231074491"/>
+        <Element index="0" value="-0.239216965096976"/>
+        <Element index="1" value="-0.560702398647432"/>
+        <Element index="2" value="-0.79270931857826"/>
       </Property>
       <Property name="EyeAngle" id="7418.EyeAngle" number_of_elements="1">
         <Element index="0" value="2"/>
