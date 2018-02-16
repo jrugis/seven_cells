@@ -21,8 +21,10 @@ def read_bin(fname):
   # get the tris
   ntris = struct.unpack('i', f1.read(4))[0]
   tris = np.empty([ntris, 3], dtype=int)
+  dnl = np.empty([ntris])
   for i in range(ntris):
     tris[i] = struct.unpack('iii', f1.read(12))
+    dnl[i] = struct.unpack('f', f1.read(4))[0]
 
   #for i in range(nverts):
   #  verts[i] = map(float, f1.next().split()[1:4])
@@ -40,7 +42,7 @@ def read_bin(fname):
   #  dnl[t] = float(v[1])
 
   f1.close # close the binary file 
-  return verts, tris
+  return verts, tris, dnl
 
 def write_points(fname, verts):
   nverts = verts.shape[0]
@@ -48,13 +50,14 @@ def write_points(fname, verts):
   for i in range(nverts):
     for j in range(3):
       xyz[j,i] = verts[i,j]  
-  pointsToVTK(fname+"_nodes", xyz[0,:], xyz[1,:], xyz[2,:], data=None) # write out vtu file
+  pointsToVTK("nodes_"+fname, \
+    xyz[0,:], xyz[1,:], xyz[2,:], \
+    data=None)  # write out vtu file
   return
 
-def write_tris(fname, verts, tris):
-
+def write_tris(fname, verts, tris, dnl):
   nverts = verts.shape[0]
-  xyz = np.empty([3, nverts]) # needs re-ordering
+  xyz = np.empty([3, nverts]) # because it needs re-ordering
   for i in range(nverts):
     for j in range(3):
       xyz[j,i] = verts[i,j]  
@@ -74,7 +77,10 @@ def write_tris(fname, verts, tris):
   for i in range(ntris):
     ctype[i] = VtkTriangle.tid 
 
-  unstructuredGridToVTK(fname+"_surface", xyz[0,:], xyz[1,:], xyz[2,:], connectivity=conn, offsets=offset, cell_types=ctype, cellData=None, pointData=None)
+  unstructuredGridToVTK("surface_"+fname, \
+    xyz[0,:], xyz[1,:], xyz[2,:], \
+    connectivity=conn, offsets=offset, cell_types=ctype, \
+    cellData= {"dnl" : dnl}, pointData=None)  # write out vtu file
 
   return
 
@@ -86,6 +92,6 @@ mesh_names = subprocess.check_output("ls *tet.bin", shell=True).split()
 for mesh in mesh_names:
   fname = mesh.split('.')[0]
   print fname
-  verts, tris = read_bin(fname)
+  verts, tris, dnl = read_bin(fname)
   write_points(fname, verts)
-  write_tris(fname, verts, tris)
+  write_tris(fname, verts, tris, dnl)
