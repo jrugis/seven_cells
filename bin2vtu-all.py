@@ -43,6 +43,7 @@ def write_points(fname, verts):
 
 ##################################################################
 def write_tris(fname, verts, tris, dnl):
+
   nverts = verts.shape[0]
   xyz = np.empty([3, nverts]) # because it needs re-ordering
   for i in range(nverts):
@@ -73,6 +74,7 @@ def write_tris(fname, verts, tris, dnl):
 
 ##################################################################
 def write_apical(fname, verts, tris, dnl, radius):
+
   conn = np.empty(3*tris.shape[0]) # more than needed...
   c = 0
   for i, t in enumerate(tris):
@@ -105,25 +107,40 @@ def write_apical(fname, verts, tris, dnl, radius):
   return
 
 ##################################################################
+def tris_in_verts(vi, tris): # vertex indices, tris
+  ti = []
+  for t in tris: # find tris associated with verticies in list
+    ans = np.where(vi == t[0])
+    if len(ans[0]) == 0: continue
+    ans = np.where(vi == t[1])
+    if len(ans[0]) == 0: continue
+    ans = np.where(vi == t[2])
+    if len(ans[0]) == 0: continue
+    ti.append(t)
+  return np.array(ti, dtype=int)
+
+##################################################################
 def common_tris(lvertsA, trisA, lvertsB):
-  cvi = []
-  for v in lvertsB:
-    ans = np.where(lvertsA==v)
-    if len(ans[0]) == 3:
-      cvi.append(ans[0][0]+1)
+  cviA = []
+  for v in lvertsB: # first find common vertices 
+    ans = np.where(np.linalg.norm(lvertsA-v,axis=1) < 0.001)
+    if len(ans[0]) != 0:
+      if len(ans[0]) > 1:
+        print("ERROR: duplicate vertices")
+      cviA.append(ans[0][0]+1)
 
-  cvi = np.array(cvi, dtype=int)
-  cti = []
-  for t in trisA:
-    ans = np.where(cvi == t[0])
-    if len(ans[0]) == 0: continue
-    ans = np.where(cvi == t[1])
-    if len(ans[0]) == 0: continue
-    ans = np.where(cvi == t[2])
-    if len(ans[0]) == 0: continue
-    cti.append(t)
-
-  return np.array(cti, dtype=int)
+  cviA = np.array(cviA, dtype=int)
+  #ctiA = []
+  #for t in trisA:
+  #  ans = np.where(cviA == t[0])
+  #  if len(ans[0]) == 0: continue
+  #  ans = np.where(cviA == t[1])
+  #  if len(ans[0]) == 0: continue
+  #  ans = np.where(cviA == t[2])
+  #  if len(ans[0]) == 0: continue
+  #  ctiA.append(t)
+  #return np.array(ctiA, dtype=int)
+  return(tris_in_verts(cviA,trisA))
 
 ##################################################################
 def write_common(fname, verts, tris):
@@ -171,7 +188,7 @@ for mesh in mesh_names:
   ltris.append(tris)
   #write_points(fname, verts)
   #write_tris(fname, verts, tris, dnl)
-  write_apical(fname, verts, tris, dnl, 0.8)
+  #write_apical(fname, verts, tris, dnl, 0.8)
 
 ncells = len(mesh_names)
 for c1 in range(ncells):
