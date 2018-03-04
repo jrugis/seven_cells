@@ -60,7 +60,7 @@ def read_lumen():
   return lsegs
 
 ###########################################################################
-def read_bin(fname):
+def read_bin(fname):   ### NEEDS UPDATE!!!!
   f1 = open(fname + '.bin', 'rb') # open the binary file
   # get the vertices
   nverts = struct.unpack('i', f1.read(4))[0]
@@ -108,8 +108,8 @@ def write_bin(fname, verts, tris, dnl, tets, apical, basal, common):
     f1.write(struct.pack('i', x))
 
   f1.write(struct.pack('i', common.shape[0]))
-  for i,x in enumerate(common):
-    f1.write(struct.pack('i', x))
+  for i,x in enumerate(np.transpose(common)):
+    f1.write(struct.pack('iii', x[0], x[1], x[2]))
 
   f1.close # close the binary file 
   return

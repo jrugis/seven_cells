@@ -50,22 +50,37 @@ def get_basal(tris, ctrisi, atrisi):
   return(btrisi)
 
 ###########################################################################
-def find_tris(vi, tris): # vertex indices, tris
-  ti = []
-  for i, t in enumerate(tris): # find tris associated with verticies in list
-    ans = np.where(vi == t[0]) # first vertex in list?
+def find_tri(vi, tris): # vertex indices, tris
+  for i,t in enumerate(tris): # find tri containing all three vertex indices
+    if len(np.where(t == vi[0])[0]) == 0: continue # first vertex in tri?
+    if len(np.where(t == vi[1])[0]) == 0: continue # second vertex in tri?
+    if len(np.where(t == vi[2])[0]) == 0: continue # third vertex in tri?
+    return i+1
+  return 0
+
+###########################################################################
+def find_tris(viA, trisA, viB, trisB): # vertex indices, tris
+  tiA = [] # matching tri pairs in cell A & B
+  tiB = [] #
+  v = np.array([0,0,0], dtype=int)
+  for i, t in enumerate(trisA): # find tris associated with verticies in list
+    ans = np.where(viA == t[0]) # first vertex in list?
     if len(ans[0]) == 0: continue
-    ans = np.where(vi == t[1]) # second vertex in list?
+    v[0] = ans[0][0]
+    ans = np.where(viA == t[1]) # second vertex in list?
     if len(ans[0]) == 0: continue
-    ans = np.where(vi == t[2]) # third vertex in list?
+    v[1] = ans[0][0]
+    ans = np.where(viA == t[2]) # third vertex in list?
     if len(ans[0]) == 0: continue
-    ti.append(i+1)
-  return np.array(ti, dtype=int) # return tri indicies
+    v[2] = ans[0][0]
+    tiA.append(i+1)
+    tiB.append(find_tri(viB[v], trisB)) # find matching tri
+  return(np.array(tiA, dtype=int),np.array(tiB, dtype=int)) # return tri indicies
 
 ###########################################################################
 def get_common(vertsA, trisA, vertsB, trisB):
-  cviA = []
-  cviB = []
+  cviA = [] # matching vertex pairs in cell A & B
+  cviB = [] #
   for i,v in enumerate(vertsB): # first find common vertices
     ans = np.where(np.linalg.norm(vertsA-v,axis=1) < 0.001)
     if len(ans[0]) != 0:
@@ -76,8 +91,7 @@ def get_common(vertsA, trisA, vertsB, trisB):
   cviA = np.array(cviA, dtype=int)
   cviB = np.array(cviB, dtype=int)
 
-  tiA = find_tris(cviA,trisA)
-  tiB = np.empty((0,1))
+  tiA, tiB = find_tris(cviA,trisA,cviB,trisB) # find associated tris
   return(tiA, tiB) # return tri indicies
 ###########################################################################
 

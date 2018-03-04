@@ -44,13 +44,14 @@ for mesh in mesh_names:
 print("\ncalc/write common")
 ncells = len(mesh_names)
 for c1 in range(ncells):
-  ctrisi = np.array([], dtype=int) # common tri indices per cell
+  ctrisi = np.empty((3,0), dtype=int) # common tri indices per cell
   for c2 in range(ncells):
     if(c1==c2): continue
     print str(c1+1)+'/'+str(c2+1),; sys.stdout.flush()
     ctiA,ctiB = ut.get_common(lverts[c1], ltris[c1], lverts[c2], ltris[c2]) # pair-wise common
     if ctiA.shape[0] != 0:
-      ctrisi = np.concatenate([ctrisi,ctiA])
+      T = np.concatenate([[ctiA],np.full([1,ctiA.shape[0]],c2+1,dtype=int),[ctiB]])
+      ctrisi = np.concatenate((ctrisi,T), axis=1)
       if(c2 > c1):
         fname = "common_" + str(c1+1) + "c" + str(c2+1) + "c"
         rw.write_tris(fname, lverts[c1], ltris[c1][ctiA-1]) # has all the verts
@@ -60,7 +61,7 @@ print("\ncalc basal, write basal/binary")
 for i, mesh in enumerate(mesh_names):
   print str(i+1),; sys.stdout.flush()
   fname = mesh.split('.')[0]
-  btrisi = ut.get_basal(ltris[i], lctrisi[i], latrisiL[i])
+  btrisi = ut.get_basal(ltris[i], lctrisi[i][0], latrisiL[i])
   rw.write_tris("basal_"+fname, lverts[i], ltris[i][btrisi-1]) # has all the verts
   rw.write_bin("4sim_"+fname, lverts[i], ltris[i], ldnl[i], 
     ltets[i], latrisiS[i], btrisi, lctrisi[i]) 
