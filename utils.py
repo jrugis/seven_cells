@@ -55,8 +55,8 @@ def find_tri(vi, tris): # vertex indices, tris
     if len(np.where(t == vi[0])[0]) == 0: continue # first vertex in tri?
     if len(np.where(t == vi[1])[0]) == 0: continue # second vertex in tri?
     if len(np.where(t == vi[2])[0]) == 0: continue # third vertex in tri?
-    return i+1
-  return 0
+    return i+1 # found
+  return 0     # not found
 
 ###########################################################################
 def find_tris(viA, trisA, viB, trisB): # vertex indices, tris
@@ -73,8 +73,10 @@ def find_tris(viA, trisA, viB, trisB): # vertex indices, tris
     ans = np.where(viA == t[2]) # third vertex in list?
     if len(ans[0]) == 0: continue
     v[2] = ans[0][0]
-    tiA.append(i+1)
-    tiB.append(find_tri(viB[v], trisB)) # find matching tri
+    t = find_tri(viB[v], trisB) # find matching tri
+    if t != 0: # found?
+      tiA.append(i+1)
+      tiB.append(t) # t is already one indexed
   return(np.array(tiA, dtype=int),np.array(tiB, dtype=int)) # return tri indicies
 
 ###########################################################################
@@ -90,8 +92,18 @@ def get_common(vertsA, trisA, vertsB, trisB):
       cviB.append(i+1)
   cviA = np.array(cviA, dtype=int)
   cviB = np.array(cviB, dtype=int)
-
   tiA, tiB = find_tris(cviA,trisA,cviB,trisB) # find associated tris
+#  for n in range(len(tiA)): # check that triangles actually match
+#    t1 = np.average(vertsA[trisA[tiA[n]-1]-1],axis=0)
+#    t2 = np.average(vertsB[trisB[tiB[n]-1]-1],axis=0)
+#    d = np.linalg.norm(t1-t2)
+#    if(d > 0.001):
+#      print(tiB[n])
+#      print(vertsA[trisA[tiA[n]-1]-1])
+#      print(t1)
+#      print(vertsB[trisB[tiB[n]-1]-1])
+#      print(t2)
+#      print(d)
   return(tiA, tiB) # return tri indicies
 ###########################################################################
 

@@ -52,9 +52,11 @@ for c1 in range(ncells):
     if ctiA.shape[0] != 0:
       T = np.concatenate([[ctiA],np.full([1,ctiA.shape[0]],c2+1,dtype=int),[ctiB]])
       ctrisi = np.concatenate((ctrisi,T), axis=1)
-      if(c2 > c1):
-        fname = "common_" + str(c1+1) + "c" + str(c2+1) + "c"
-        rw.write_tris(fname, lverts[c1], ltris[c1][ctiA-1]) # has all the verts
+#      if(c2 > c1):
+#        fname = "common_" + str(c1+1) + "c" + str(c2+1) + "c"
+#        rw.write_tris(fname, lverts[c1], ltris[c1][ctiA-1]) # has all the verts
+      fname = "common_" + str(c1+1) + "c" + str(c2+1) + "c"
+      rw.write_tris(fname, lverts[c1], ltris[c1][ctiA-1]) # has all the verts
   lctrisi.append(ctrisi)
 
 print("\ncalc basal, write basal/binary")

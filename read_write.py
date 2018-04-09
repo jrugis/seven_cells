@@ -107,7 +107,7 @@ def write_bin(fname, verts, tris, dnl, tets, apical, basal, common):
   for i,x in enumerate(basal):
     f1.write(struct.pack('i', x))
 
-  f1.write(struct.pack('i', common.shape[0]))
+  f1.write(struct.pack('i', common.shape[1]))
   for i,x in enumerate(np.transpose(common)):
     f1.write(struct.pack('iii', x[0], x[1], x[2]))
 
