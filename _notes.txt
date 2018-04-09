@@ -27,7 +27,7 @@ number of basal surface triangles (int32)
   .
   .
   .
-Number of cell-to-cell common surface triangles (int32)
+number of cell-to-cell common surface triangles (int32)
   this cell common surface triangle index (int32), 
     other cell index (int32), 
     other cell common surface triangle index (int32)
