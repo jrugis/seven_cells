@@ -3,6 +3,7 @@ import struct
 from evtk.hl import pointsToVTK
 from evtk.hl import unstructuredGridToVTK
 from evtk.vtk import VtkTriangle
+from evtk.vtk import VtkTetra
 
 ###########################################################################
 # functions
@@ -84,7 +85,7 @@ def read_bin(fname):   ### NEEDS UPDATE!!!!
   return verts, tris, dnl, tets
 
 ###########################################################################
-def write_bin(fname, verts, tris, dnl, tets, apical, basal, common):
+def write_bin(fname, verts, tris, tets, dfb, apical, basal, common):
   f1 = open(fname + '.bin', 'wb') # create the binary file
 
   f1.write(struct.pack('i', verts.shape[0]))
@@ -93,11 +94,11 @@ def write_bin(fname, verts, tris, dnl, tets, apical, basal, common):
 
   f1.write(struct.pack('i', tris.shape[0]))
   for i,x in enumerate(tris):
-    f1.write(struct.pack('iiif', x[0], x[1], x[2], dnl[i]))
+    f1.write(struct.pack('iii', x[0], x[1], x[2]))
 
   f1.write(struct.pack('i', tets.shape[0]))
   for i,x in enumerate(tets):
-    f1.write(struct.pack('iiii', x[0], x[1], x[2], x[3]))
+    f1.write(struct.pack('iiiif', x[0], x[1], x[2], x[3], dfb[i]))
 
   f1.write(struct.pack('i', apical.shape[0]))
   for i,x in enumerate(apical):
@@ -152,4 +153,31 @@ def write_tris(fname, verts, tris, data=None):
   return
 
 ###########################################################################
+def write_tets(fname, verts, tets, data=None):
+  nverts = verts.shape[0]
+  xyz = np.empty([3, nverts]) # because it needs re-ordering
+  for i in range(nverts):
+    for j in range(3):
+      xyz[j,i] = verts[i,j]  
+  ntets = tets.shape[0]
+  conn = np.empty(4*ntets)
+  for i in range(ntets):
+    conn[4*i] = tets[i,0]-1 # index from zero
+    conn[4*i+1] = tets[i,1]-1
+    conn[4*i+2] = tets[i,2]-1
+    conn[4*i+3] = tets[i,3]-1
+  offset = np.zeros(ntets, dtype=int)
+  for i in range(ntets):
+    offset[i] = 4*(i+1) 
+  ctype = np.zeros(ntets)
+  for i in range(ntets):
+    ctype[i] = VtkTetra.tid 
+  unstructuredGridToVTK(fname, \
+    xyz[0,:], xyz[1,:], xyz[2,:], \
+    connectivity=conn, offsets=offset, cell_types=ctype, \
+    cellData=data, pointData=None)  # write out vtu file
+  return
+
+###########################################################################
+
 

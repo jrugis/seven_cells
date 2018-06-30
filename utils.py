@@ -34,6 +34,20 @@ def get_dnl(tris, verts, lsegs):
   return dnl
 
 ###########################################################################
+def get_dfb(btris, verts, tets):
+  ntets = tets.shape[0]
+  dfb = np.empty([ntets])
+  for i in range(ntets):
+#    C = np.average(verts[tris[i]-1], axis=0) # center of tri
+    d = 100.0 # large dummy initial distance
+#    for seg in lsegs:
+#      ds = getDistQ(seg[0:3], seg[3:6], C)
+#      if ds < d: 
+#        d = ds
+    dfb[i] = d # save the minimum distance
+  return dfb
+
+###########################################################################
 def get_apical(tris, dnl, small_radius, large_radius):
   atrisS = []
   atrisL = []
