@@ -1,4 +1,5 @@
 import numpy as np
+import sys
 
 ###########################################################################
 # functions
@@ -34,16 +35,21 @@ def get_dnl(tris, verts, lsegs):
   return dnl
 
 ###########################################################################
-def get_dfb(btris, verts, tets):
+def get_dfb(btris, tris, verts, tets):
+  nbtris = btris.shape[0]
   ntets = tets.shape[0]
-  dfb = np.empty([ntets])
+  cbtris = np.empty([nbtris,3]) # center of basal tris
+  dfb = np.empty([ntets]) # distance from basal to center of tet
+  for i in range(nbtris):
+    cbtris[i] = np.average(verts[tris[btris[i]-1]-1], axis=0) # center of basal tri
   for i in range(ntets):
-#    C = np.average(verts[tris[i]-1], axis=0) # center of tri
-    d = 100.0 # large dummy initial distance
-#    for seg in lsegs:
-#      ds = getDistQ(seg[0:3], seg[3:6], C)
-#      if ds < d: 
-#        d = ds
+    if i%1000 == 0: print".",; sys.stdout.flush() # indication of progress 
+    T = np.average(verts[tets[i]-1], axis=0) # center of tet
+    d = 100.0 # initial large dummy distance
+    for B in cbtris:
+      ds = np.linalg.norm(B-T)
+      if ds < d: 
+        d = ds
     dfb[i] = d # save the minimum distance
   return dfb
 
