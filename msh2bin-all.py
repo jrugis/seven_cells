@@ -16,13 +16,14 @@ import utils as ut       # utils.py
 # lists of data for each cell 
 #  NOTE: one-based indexing
 lverts   = []  # vertices
+ldfa     = []  #   distance from apical
 ltris    = []  # tris
 ltets    = []  # tets
 latrisiS = []  # apical tri indices Small
 latrisiL = []  # apical tri indices Large
 lctrisi  = []  # common tri indices
 
-print("read mesh, calc dnl/apical, write nodes/surface/apical")
+print("read mesh, calc dnl/apical/dfa, write nodes/surface/apical")
 lsegs = rw.read_lumen()
 mesh_names = subprocess.check_output("ls *.msh", shell=True).split()
 for mesh in mesh_names:
@@ -31,7 +32,9 @@ for mesh in mesh_names:
   verts, tris, tets = rw.read_mesh(fname)
   dnl = ut.get_dnl(tris, verts, lsegs)
   atrisiS, atrisiL = ut.get_apical(tris, dnl, 0.8, 1.4) # apical distances
-  rw.write_points("nodes_"+fname, verts)
+  dfa = ut.get_dfa(atrisiS, tris, verts)
+  ldfa.append(dfa)
+  rw.write_points("nodes_"+fname, verts, pdata={"dfa" : dfa})
   rw.write_tris("surface_"+fname, verts, tris, data={"dnl" : dnl})
   rw.write_tris("apical_"+fname, verts, tris[atrisiS-1]) # has all the verts
   lverts.append(verts)
@@ -64,7 +67,7 @@ for i, mesh in enumerate(mesh_names):
   dfb = ut.get_dfb(btrisi, ltris[i], lverts[i], ltets[i])
   rw.write_tris("basal_"+fname, lverts[i], ltris[i][btrisi-1]) # has all the verts
   rw.write_tets("elements_"+fname, lverts[i], ltets[i], data={"dfb" : dfb})
-  rw.write_bin("4sim_"+fname, lverts[i], ltris[i], 
+  rw.write_bin("4sim_"+fname, lverts[i], ldfa[i], ltris[i], 
     ltets[i], dfb, latrisiS[i], btrisi, lctrisi[i]) 
 
 print "\nDONE."

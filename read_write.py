@@ -85,12 +85,12 @@ def read_bin(fname):   ### NEEDS UPDATE!!!!
   return verts, tris, dnl, tets
 
 ###########################################################################
-def write_bin(fname, verts, tris, tets, dfb, apical, basal, common):
+def write_bin(fname, verts, dfa, tris, tets, dfb, apical, basal, common):
   f1 = open(fname + '.bin', 'wb') # create the binary file
 
   f1.write(struct.pack('i', verts.shape[0]))
-  for x in verts:
-    f1.write(struct.pack('fff', x[0], x[1], x[2]))
+  for i,x in enumerate(verts):
+    f1.write(struct.pack('ffff', x[0], x[1], x[2], dfa[i]))
 
   f1.write(struct.pack('i', tris.shape[0]))
   for i,x in enumerate(tris):
@@ -116,7 +116,7 @@ def write_bin(fname, verts, tris, tets, dfb, apical, basal, common):
   return
 
 ###########################################################################
-def write_points(fname, verts):
+def write_points(fname, verts, pdata=None):
   nverts = verts.shape[0]
   xyz = np.empty([3, nverts]) # needs re-ordering
   for i in range(nverts):
@@ -124,7 +124,7 @@ def write_points(fname, verts):
       xyz[j,i] = verts[i,j]  
   pointsToVTK(fname, \
     xyz[0,:], xyz[1,:], xyz[2,:], \
-    data=None)  # write out vtu file
+    data=pdata)  # write out vtu file
   return
 
 ###########################################################################

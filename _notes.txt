@@ -5,7 +5,9 @@ Changelog
 03-07-18
 Removed dnl from surface triangles block.
 Added dfb (distance from basal) to tetrahedrons block.
-
+---------
+22-08-18
+Added dfa (distance from apical) to verticies block.
 
 **************************************************************
 **************************************************************
@@ -15,6 +17,7 @@ Cell: binary data file format (4sim_*.bin)
 
 number of verticies (int32)
   vertices x,y,z (3x float32)
+    distance from apical (1x float32)
   .
   .
   .

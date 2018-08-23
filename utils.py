@@ -35,6 +35,24 @@ def get_dnl(tris, verts, lsegs):
   return dnl
 
 ###########################################################################
+def get_dfa(atris, tris, verts):
+  nverts = verts.shape[0]
+  natris = atris.shape[0]
+  catris = np.empty([natris,3]) # center of apical tris
+  dfa = np.empty([nverts]) # distance from apical (node-wise)
+  for i in range(natris):
+    catris[i] = np.average(verts[tris[atris[i]-1]-1], axis=0) # center of apical tri
+  for i in range(nverts):
+    if i%100 == 0: print".",; sys.stdout.flush() # indication of progress 
+    d = 100.0 # initial large dummy distance
+    for A in catris:
+      ds = np.linalg.norm(verts[i]-A)
+      if ds < d: 
+        d = ds
+    dfa[i] = d # save the minimum distance
+  return dfa
+
+###########################################################################
 def get_dfb(btris, tris, verts, tets):
   nbtris = btris.shape[0]
   ntets = tets.shape[0]
@@ -47,7 +65,7 @@ def get_dfb(btris, tris, verts, tets):
     T = np.average(verts[tets[i]-1], axis=0) # center of tet
     d = 100.0 # initial large dummy distance
     for B in cbtris:
-      ds = np.linalg.norm(B-T)
+      ds = np.linalg.norm(T-B)
       if ds < d: 
         d = ds
     dfb[i] = d # save the minimum distance
