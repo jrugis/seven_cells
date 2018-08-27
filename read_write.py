@@ -85,12 +85,12 @@ def read_bin(fname):   ### NEEDS UPDATE!!!!
   return verts, tris, dnl, tets
 
 ###########################################################################
-def write_bin(fname, verts, dfa, tris, tets, dfb, apical, basal, common):
+def write_bin(fname, verts, tris, tets, dfa, dfb, apical, basal, common):
   f1 = open(fname + '.bin', 'wb') # create the binary file
 
   f1.write(struct.pack('i', verts.shape[0]))
   for i,x in enumerate(verts):
-    f1.write(struct.pack('ffff', x[0], x[1], x[2], dfa[i]))
+    f1.write(struct.pack('fff', x[0], x[1], x[2]))
 
   f1.write(struct.pack('i', tris.shape[0]))
   for i,x in enumerate(tris):
@@ -98,7 +98,7 @@ def write_bin(fname, verts, dfa, tris, tets, dfb, apical, basal, common):
 
   f1.write(struct.pack('i', tets.shape[0]))
   for i,x in enumerate(tets):
-    f1.write(struct.pack('iiiif', x[0], x[1], x[2], x[3], dfb[i]))
+    f1.write(struct.pack('iiiiff', x[0], x[1], x[2], x[3], dfa[i], dfb[i]))
 
   f1.write(struct.pack('i', apical.shape[0]))
   for i,x in enumerate(apical):

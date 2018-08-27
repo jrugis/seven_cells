@@ -9,6 +9,9 @@ Added dfb (distance from basal) to tetrahedrons block.
 22-08-18
 Added dfa (distance from apical) to verticies block.
 
+27-08-18
+Moved dfa (distance from apical) to tetrahedrons block.
+
 **************************************************************
 **************************************************************
 
@@ -17,7 +20,6 @@ Cell: binary data file format (4sim_*.bin)
 
 number of verticies (int32)
   vertices x,y,z (3x float32)
-    distance from apical (1x float32)
   .
   .
   .
@@ -28,6 +30,7 @@ number of surface triangles (int32)
   .
 number of element tetrahedrons (int32)
   tetrahedron vertex indicies t1,t2,t3,t4 (4x int32)
+    distance from apical (1x float32)
     distance from basal (1x float32)
   .
   .
