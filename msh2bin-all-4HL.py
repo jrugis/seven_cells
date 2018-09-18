@@ -28,13 +28,14 @@ for mesh in mesh_names:
   nrverts = rverts - np.min(rverts, axis=0) # normalise all verts to non-negative 
   max = (np.max(nrverts, axis=0)) # get the range of vertex values
 
-  # create a multi-dimensional grid (as an array) for extracting a uniform spatial vertex subset
-  # the last two indicies are for distance to nearest vertex (dnv) and its associated index
+  # create a 4D grid (as an array) for extracting a uniform spatial vertex subset
+  # - stores distance to nearest vertex (dnv) and the associated vertex index at each grid point
+  # - the integer parts of every vertex coordinate are used to index the grid 
   vgrid = np.zeros((np.concatenate((np.floor(max+1),[2])).astype(int)))
-  toohigh = 1000000 # high dummy values for dnv and its index
+  toohigh = 1000000 # high dummy values for dnv and index
   vgrid.fill(toohigh) 
 
-  ifverts = np.modf(nrverts) # get the integer and fractional part of all nverts
+  ifverts = np.modf(nrverts) # get the integer and fractional part of all nrverts
 
   # iterate through all verts and store the vert that is closest to each (integer) grid point
   for i in range(nrverts.shape[0]):
@@ -55,6 +56,7 @@ for mesh in mesh_names:
   print "Vertex count reduction:", verts.shape[0], "->", cvi.shape[0]
 
   rw.write_points("reduced-nodes_"+fname, rverts[cvi.astype(int)])
+  rw.write_indicies("reduced-indicies_"+fname, cvi)
 
 ###########################################################################
 ###########################################################################

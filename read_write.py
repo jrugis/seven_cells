@@ -116,6 +116,17 @@ def write_bin(fname, verts, tris, tets, dfa, dfb, apical, basal, common):
   return
 
 ###########################################################################
+def write_indicies(fname, idx):
+  f1 = open(fname + '.bin', 'wb') # create the binary file
+  f1.write(struct.pack('i', idx.shape[0]))
+
+  for n in idx:
+    f1.write(struct.pack('i', n))
+
+  f1.close # close the binary file 
+  return
+
+###########################################################################
 def write_points(fname, verts, pdata=None):
   nverts = verts.shape[0]
   xyz = np.empty([3, nverts]) # needs re-ordering
