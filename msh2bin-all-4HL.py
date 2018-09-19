@@ -22,7 +22,7 @@ for mesh in mesh_names:
   verts, tris, tets = rw.read_mesh(fname)
 
   rvertsi = np.array([range(verts.shape[0])], dtype=int) + 1 # all vert indices
-  rvertsi = np.setdiff1d(rvertsi, tris) # remove surface tri indicies
+  rvertsi = np.setdiff1d(rvertsi, tris) # remove surface tri indices
   rverts = verts[rvertsi-1] # all the non-surface verts
 
   nrverts = rverts - np.min(rverts, axis=0) # normalise all verts to non-negative 
@@ -50,13 +50,13 @@ for mesh in mesh_names:
       vgrid[vgridi[0]][vgridi[1]][vgridi[2]][0] = dist # store the new closer distance
       vgrid[vgridi[0]][vgridi[1]][vgridi[2]][1] = i # update the associated vertex index
 
-  # extract the close vertex indicies
+  # extract the close vertex indices
   cvi = vgrid[:,:,:,1]
   cvi = np.extract(cvi < toohigh, cvi)
   print "Vertex count reduction:", verts.shape[0], "->", cvi.shape[0]
 
   rw.write_points("reduced-nodes_"+fname, rverts[cvi.astype(int)])
-  rw.write_indicies("reduced-indicies_"+fname, cvi)
+  rw.write_indicies("reduced-indices_"+fname, cvi)
 
 ###########################################################################
 ###########################################################################
