@@ -20,14 +20,13 @@ for mesh in mesh_names:
   print fname[-4]
 
   verts, tris, tets = rw.read_mesh(fname)
-
-  rvertsi = np.array([range(verts.shape[0])], dtype=int) + 1 # all vert indices
+  rvertsi = np.array([range(1, verts.shape[0]+1)], dtype=int) # all vert indices
   rvertsi = np.setdiff1d(rvertsi, tris) # remove surface tri indices
-  rverts = verts[rvertsi-1] # all the non-surface verts
-  rverts = rverts * 0.6 # node reduction factor
+  rvertsi -= 1; # change to zero indexed
+  nverts = 0.6 * verts # node reduction factor
 
-  nrverts = rverts - np.min(rverts, axis=0) # normalise all verts to non-negative 
-  max = (np.max(nrverts, axis=0)) # get the range of vertex values
+  nverts = nverts - np.min(nverts, axis=0) # normalise all verts to non-negative 
+  max = (np.max(nverts, axis=0)) # get the range of vertex values
 
   # create a 4D grid (as an array) for extracting a uniform spatial vertex subset
   # - stores distance to nearest vertex (dnv) and the associated vertex index at each grid point
@@ -36,19 +35,19 @@ for mesh in mesh_names:
   toohigh = 1000000 # high dummy values for dnv and index
   vgrid.fill(toohigh) 
 
-  ifverts = np.modf(nrverts) # get the integer and fractional part of all nrverts
+  ifverts = np.modf(nverts) # get the integer and fractional part of all nverts
 
-  # iterate through all verts and store the vert that is closest to each (integer) grid point
-  for i in range(nrverts.shape[0]):
+  # iterate through rvertsi and store the vert that is closest to each (integer) grid point
+  for i in rvertsi:
     dist = np.linalg.norm(ifverts[0][i])
     vgridi = (ifverts[1][i]).astype(int) # grid index is simply the vertex location integer part
-    if dist > 1: # don't bother with grid points that have no close vertex
+    if dist > 0.5: # don't bother with grid points that have no close vertex
       continue
+    noise = 0.3 * np.random.ranf() # some spatial dithering to break up an aligned visual
+    dist += noise
 
     # is this vertex closest to the grid point?
-    #noise = (0.8 * np.random.ranf()) - 0.4 # some spatial dithering to break up an aligned visual
-    noise = 0.0
-    if (dist + noise) < vgrid[vgridi[0]][vgridi[1]][vgridi[2]][0]: 
+    if dist < vgrid[vgridi[0]][vgridi[1]][vgridi[2]][0]: 
       vgrid[vgridi[0]][vgridi[1]][vgridi[2]][0] = dist # store the new closer distance
       vgrid[vgridi[0]][vgridi[1]][vgridi[2]][1] = i # update the associated vertex index
 
@@ -57,7 +56,7 @@ for mesh in mesh_names:
   cvi = np.extract(cvi < toohigh, cvi)
   print "Vertex count reduction:", verts.shape[0], "->", cvi.shape[0]
 
-  rw.write_points("reduced-nodes_"+fname, rverts[cvi.astype(int)])
+  rw.write_points("reduced-nodes_"+fname, verts[cvi.astype(int)])
   rw.write_indicies("reduced-indices_"+fname, cvi)
 
 ###########################################################################
