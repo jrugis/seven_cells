@@ -24,7 +24,7 @@ for mesh in mesh_names:
   rvertsi = np.array([range(verts.shape[0])], dtype=int) + 1 # all vert indices
   rvertsi = np.setdiff1d(rvertsi, tris) # remove surface tri indices
   rverts = verts[rvertsi-1] # all the non-surface verts
-  rverts = rverts * 0.6
+  rverts = rverts * 0.6 # node reduction factor
 
   nrverts = rverts - np.min(rverts, axis=0) # normalise all verts to non-negative 
   max = (np.max(nrverts, axis=0)) # get the range of vertex values
@@ -46,7 +46,8 @@ for mesh in mesh_names:
       continue
 
     # is this vertex closest to the grid point?
-    noise = (0.8 * np.random.ranf()) - 0.4 # some spatial dithering to break up an aligned visual
+    #noise = (0.8 * np.random.ranf()) - 0.4 # some spatial dithering to break up an aligned visual
+    noise = 0.0
     if (dist + noise) < vgrid[vgridi[0]][vgridi[1]][vgridi[2]][0]: 
       vgrid[vgridi[0]][vgridi[1]][vgridi[2]][0] = dist # store the new closer distance
       vgrid[vgridi[0]][vgridi[1]][vgridi[2]][1] = i # update the associated vertex index
