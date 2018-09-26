@@ -29,7 +29,7 @@ number of surface triangles (int32)
   .
   .
 number of element tetrahedrons (int32)
-  tetrahedron vertex indicies t1,t2,t3,t4 (4x int32)
+  tetrahedron vertex indicies v1,v2,v3,v4 (4x int32)
     distance from apical (1x float32)
     distance from basal (1x float32)
   .
