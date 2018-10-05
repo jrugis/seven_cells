@@ -2,8 +2,14 @@
 % reads in a parotid gland binary mesh file
 % 05/10/2018 J.Rugis
 %
+% input: binary mesh file name name (e.g. '4sim_out_N4_p3-p2-p4-1tet.bin')
+% output: vertices, vertices_dfa, surface_tris, 
+%         tets, tets_dfa, tets_dfb, 
+%         apical_tris, basal_tris, common_tris
 
-fname = '4sim_out_N4_p3-p2-p4-1tet.bin';
+function [vertices, vertices_dfa, surface_tris, ...
+          tets, tets_dfa, tets_dfb, ...
+          apical_tris, basal_tris, common_tris] = read_bin_mesh(fname)
 
 fileID = fopen(fname);
 
@@ -31,3 +37,5 @@ common_tris_count = int32(fread(fileID, 1, 'int32'));
 common_tris = transpose(int32(fread(fileID, [3 common_tris_count], 'int32')));
 
 fclose(fileID);
+
+end
