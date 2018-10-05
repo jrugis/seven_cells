@@ -12,6 +12,8 @@ Added dfa (distance from apical) to verticies block.
 27-08-18
 Moved dfa (distance from apical) to tetrahedrons block.
 
+05-10-18 Added dfa (distance from apical) back to vertices block
+
 **************************************************************
 **************************************************************
 
@@ -20,6 +22,7 @@ Cell: binary data file format (4sim_*.bin)
 
 number of verticies (int32)
   vertices x,y,z (3x float32)
+    distance from apical (1x float32)
   .
   .
   .

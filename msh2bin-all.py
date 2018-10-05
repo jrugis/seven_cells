@@ -15,13 +15,14 @@ import utils as ut       # utils.py
 
 # lists of data for each cell 
 #  NOTE: one-based indexing
-lverts   = []  # vertices
-ldfa     = []  #   distance from apical
-ltris    = []  # tris
-ltets    = []  # tets
-latrisiS = []  # apical tri indices Small
-latrisiL = []  # apical tri indices Large
-lctrisi  = []  # common tri indices
+lverts    = []  # vertices
+ldfa_vert = []  #   distance from apical
+ltris     = []  # tris
+ltets     = []  # tets
+ldfa_tet  = []  #   distance from apical
+latrisiS  = []  # apical tri indices Small
+latrisiL  = []  # apical tri indices Large
+lctrisi   = []  # common tri indices
 
 print("read mesh, calc dnl/apical/dfa, write nodes/surface/apical")
 lsegs = rw.read_lumen()
@@ -32,9 +33,10 @@ for mesh in mesh_names:
   verts, tris, tets = rw.read_mesh(fname)
   dnl = ut.get_dnl(tris, verts, lsegs)
   atrisiS, atrisiL = ut.get_apical(tris, dnl, 0.8, 1.4) # apical distances
-  dfa = ut.get_dfab(atrisiS, tris, verts, tets)
-  ldfa.append(dfa)
-  rw.write_points("nodes_"+fname, verts, pdata={"dfa" : dfa})
+  dfa_vert, dfa_tet = ut.get_dfa(atrisiS, tris, verts, tets)
+  ldfa_vert.append(dfa_vert)
+  ldfa_tet.append(dfa_tet)
+  rw.write_points("nodes_"+fname, verts, pdata={"dfa" : dfa_vert})
   rw.write_tris("surface_"+fname, verts, tris, data={"dnl" : dnl})
   rw.write_tris("apical_"+fname, verts, tris[atrisiS-1]) # has all the verts
   lverts.append(verts)
@@ -64,11 +66,11 @@ for i, mesh in enumerate(mesh_names):
   print str(i+1),; sys.stdout.flush()
   fname = mesh.split('.')[0]
   btrisi = ut.get_basal(ltris[i], lctrisi[i][0], latrisiL[i])
-  dfb = ut.get_dfab(btrisi, ltris[i], lverts[i], ltets[i])
+  dfb = ut.get_dfb(btrisi, ltris[i], lverts[i], ltets[i])
   rw.write_tris("basal_"+fname, lverts[i], ltris[i][btrisi-1]) # has all the verts
-  rw.write_tets("elements_"+fname, lverts[i], ltets[i], data={"dfb" : dfb})
-  rw.write_bin("4sim_"+fname, lverts[i], ltris[i], 
-    ltets[i], ldfa[i], dfb, latrisiS[i], btrisi, lctrisi[i]) 
+  rw.write_tets("elements_"+fname, lverts[i], ltets[i], data={"dfa" : ldfa_tet[i], "dfb" : dfb})
+  rw.write_bin("4sim_"+fname, lverts[i], ldfa_vert[i], ltris[i], 
+    ltets[i], ldfa_tet[i], dfb, latrisiS[i], btrisi, lctrisi[i]) 
 print "\nDONE."
 
 ###########################################################################
