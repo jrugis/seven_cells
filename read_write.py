@@ -61,28 +61,47 @@ def read_lumen():
   return lsegs
 
 ###########################################################################
-def read_bin(fname):   ### NEEDS UPDATE!!!!
+def read_bin(fname):   ### NOTE: one based indexing !!!
   f1 = open(fname + '.bin', 'rb') # open the binary file
   # get the vertices
   nverts = struct.unpack('i', f1.read(4))[0]
   verts = np.empty([nverts, 3])
+  v2a = np.empty([nverts, 1])
   for i in range(nverts):
     verts[i] = struct.unpack('fff', f1.read(12))
+    v2a[i] = struct.unpack('f', f1.read(4))
   # get the tris
   ntris = struct.unpack('i', f1.read(4))[0]
   tris = np.empty([ntris, 3], dtype=int)
-  dnl = np.empty([ntris])
   for i in range(ntris):
     tris[i] = struct.unpack('iii', f1.read(12))
-    dnl[i] = struct.unpack('f', f1.read(4))[0]
   # get the tets
   ntets = struct.unpack('i', f1.read(4))[0]
   tets = np.empty([ntets, 4], dtype=int)
+  t2a = np.empty([ntets, 1])
+  t2b = np.empty([ntets, 1])
   for i in range(ntets):
     tets[i] = struct.unpack('iiii', f1.read(16))
+    t2a[i] = struct.unpack('f', f1.read(4))
+    t2b[i] = struct.unpack('f', f1.read(4))
+  # get the apical tris
+  ntris = struct.unpack('i', f1.read(4))[0]
+  atris = np.empty([ntris, 1], dtype=int)
+  for i in range(ntris):
+    atris[i] = struct.unpack('i', f1.read(4))
+  # get the bascal tris
+  ntris = struct.unpack('i', f1.read(4))[0]
+  btris = np.empty([ntris, 1], dtype=int)
+  for i in range(ntris):
+    btris[i] = struct.unpack('i', f1.read(4))
+  # get the common tris
+  ntris = struct.unpack('i', f1.read(4))[0]
+  ctris = np.empty([ntris, 3], dtype=int)
+  for i in range(ntris):
+    ctris[i] = struct.unpack('iii', f1.read(12))
 
   f1.close # close the binary file 
-  return verts, tris, dnl, tets
+  return verts, v2a, tris, tets, t2a, t2b, atris, btris, ctris
 
 ###########################################################################
 def write_bin(fname, verts, dfa_vert, tris, tets, dfa_tet, dfb, apical, basal, common):

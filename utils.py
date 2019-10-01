@@ -43,7 +43,7 @@ def get_dfb(btris, tris, verts, tets):
   for i in range(nbtris):
     ctris[i] = np.average(verts[tris[btris[i]-1]-1], axis=0) # center of basal tri
   for i in range(ntets):
-    if i%1000 == 0: print".",; sys.stdout.flush() # indication of progress 
+    if i%1000 == 0: print("."),; sys.stdout.flush() # indication of progress 
     T = np.average(verts[tets[i]-1], axis=0) # center of tet
     d = 100.0 # initial large dummy distance
     for B in ctris:
@@ -81,7 +81,7 @@ def get_dfa(atris, tris, verts, tets):
   for i in range(natris):
     catris[i] = np.average(verts[tris[atris[i]-1]-1], axis=0) # center of apical tri
   for i in range(nverts):
-   if i%1000 == 0: print".",; sys.stdout.flush() # indication of progress 
+   if i%1000 == 0: print("."),; sys.stdout.flush() # indication of progress 
    d = 100.0 # initial large dummy distance
    for A in catris:
      ds = np.linalg.norm(verts[i]-A)
