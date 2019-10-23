@@ -110,7 +110,7 @@ def read_basic_bin(fname):   ### NOTE: one based indexing !!!
   nverts = struct.unpack('i', f1.read(4))[0]
   verts = np.empty([nverts, 3])
   for i in range(nverts):
-    verts[i] = struct.unpack('fff', f1.read(12))
+    verts[i] = struct.unpack('ddd', f1.read(24))
   # get the tris
   ntris = struct.unpack('i', f1.read(4))[0]
   tris = np.empty([ntris, 3], dtype=int)
@@ -162,7 +162,7 @@ def write_basic_bin(fname, verts, tris, tets):
 
   f1.write(struct.pack('i', verts.shape[0]))
   for i,x in enumerate(verts):
-    f1.write(struct.pack('fff', x[0], x[1], x[2],))
+    f1.write(struct.pack('ddd', x[0], x[1], x[2],))
 
   f1.write(struct.pack('i', tris.shape[0]))
   for i,x in enumerate(tris):

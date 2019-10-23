@@ -23,12 +23,12 @@ mesh_names = subprocess.check_output("ls *.msh", shell=True).split()
 mesh_names = [s.decode("utf-8") for s in mesh_names] # bytes -> string
 for mesh in mesh_names:
   fname = mesh.split('.')[0]
-  print(fname[-4], end=''); sys.stdout.flush()
+  print(fname[-4]); sys.stdout.flush()
   verts, tris, tets = rw.read_mesh(fname)
   #rw.write_points("nodes_"+fname, verts)
   #rw.write_tris("surface_"+fname, verts, tris)
   #rw.write_tets("elements_"+fname, verts, tets)
-  rw.write_basic_bin("4bsim_"+fname, verts, tris, tets) 
+  rw.write_basic_bin("4sim_"+fname, verts, tris-1, tets-1) # change to zero based indexing 
 
 ###########################################################################
 ###########################################################################
